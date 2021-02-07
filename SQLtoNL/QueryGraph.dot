@@ -1,0 +1,25 @@
+strict digraph "" {
+	node [label="\N"];
+	river	 [label=river,
+		type=0];
+	"river.traverse8788251259539"	 [label=traverse,
+		type=1];
+	river -> "river.traverse8788251259539"	 [label=σ,
+		type=σ];
+	"river.length-9223363248603516262"	 [label=length,
+		type=1];
+	river -> "river.length-9223363248603516262"	 [label=σ,
+		type=σ];
+	"river.river_name"	 [label=river_name,
+		type=1];
+	"river.river_name" -> river	 [label=of,
+		type=µ];
+	"'illinois'-9223363248603504236"	 [label="'illinois'",
+		type=2];
+	"river.traverse8788251259539" -> "'illinois'-9223363248603504236"	 [label="=",
+		type=θ];
+	"750-9223363248603504188"	 [label=750,
+		type=2];
+	"river.length-9223363248603516262" -> "750-9223363248603504188"	 [label=">",
+		type=θ];
+}

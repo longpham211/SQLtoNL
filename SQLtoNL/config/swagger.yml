@@ -1,0 +1,92 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+# Paths supported by the server application
+paths:
+  /dotcode:
+    post:
+      operationId: "TestApi.build_dot_code"
+      tags:
+        - index
+      summary: "Build dot code"
+      description: "Build the dot code for the query graph from given query string"
+      parameters:
+        - name: query
+          in: body
+          description: Query string to build dotcode
+          required: True
+          schema:
+            type: object
+            properties:
+              query_string:
+                type: string
+                description: Query string used to build the graph and dotcode
+      responses:
+        200:
+          description: "Build dot code successfully"
+          schema:
+            type: "array"
+            items:
+              properties:
+                status:
+                  type: boolean
+                message:
+                  type: string
+        500:
+          description: "Error in building dot code"
+          schema:
+            type: "array"
+            items:
+              properties:
+                status:
+                  type: boolean
+                message:
+                  type: string
+  /translate:
+    post:
+      operationId: "TestApi.translate_query"
+      tags:
+        - index
+      summary: "SQL to NL translation"
+      description: "Translating the SQL query to natural language"
+      parameters:
+        - name: query
+          in: body
+          description: Query string to be translated
+          required: True
+          schema:
+            type: object
+            properties:
+              query_string:
+                type: string
+                description: Query string which needs to be translated
+      responses:
+        200:
+          description: "Translate query successfully"
+          schema:
+            type: "array"
+            items:
+              properties:
+                status:
+                  type: boolean
+                message:
+                  type: string
+        500:
+          description: "Error in translating query"
+          schema:
+            type: "array"
+            items:
+              properties:
+                status:
+                  type: boolean
+                message:
+                  type: string

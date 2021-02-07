@@ -1,0 +1,600 @@
+SELECT state.area FROM state WHERE state.state_name='texas'; what is the size of texas
+SELECT city.city_name FROM city WHERE city.state_name='nebraska' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='nebraska'); what is the biggest city in nebraska
+SELECT city.population FROM city WHERE city.city_name='chicago'; how many people live in chicago
+SELECT state.population FROM state WHERE state.state_name='new mexico'; how many people live in new mexico
+SELECT city.city_name FROM city WHERE city.state_name='texas' AND city.population>150000; what are the major cities in texas
+SELECT city.state_name FROM city WHERE city.city_name='austin' AND city.population > 150000; which states have a major city named austin ?
+SELECT city.state_name FROM city WHERE city.city_name='kalamazoo'; which state is kalamazoo in
+SELECT count(border_info.border) FROM border_info WHERE border_info.state_name='hawaii'; how many states border hawaii
+SELECT state.state_name FROM state WHERE state.area=(SELECT min(state.area) FROM state); what is the smallest state in the usa
+SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state); what is the biggest state in continental us
+SELECT border_info.border FROM border_info WHERE border_info.state_name='missouri'; what states border missouri
+SELECT city.state_name FROM city WHERE city.city_name='austin'; where is austin
+SELECT city.city_name FROM city WHERE city.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='texas') AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='texas')); what is the largest city in a state that borders texas
+SELECT state.capital FROM state WHERE state.state_name='pennsylvania'; what is the capital of pennsylvania
+SELECT count(river.river_name) FROM river WHERE river.traverse NOT IN(SELECT state.state_name FROM state WHERE state.capital='albany'); how many rivers do not traverse the state with the capital albany
+SELECT city.population FROM city WHERE city.city_name='austin'; what is the population of austin
+SELECT border_info.border FROM border_info WHERE border_info.state_name='ohio'; what states border ohio
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='alaska'; what is the highest mountain in alaska
+SELECT state.state_name FROM state WHERE state.area=(SELECT min(state.area) FROM state); what is the smallest state by area
+SELECT border_info.border FROM border_info WHERE border_info.state_name='iowa'; which states border iowa
+SELECT city.city_name FROM city WHERE city.population=(SELECT min(city.population) FROM city); what city has the least population
+SELECT city.city_name FROM city WHERE city.state_name='hawaii' AND city.population=(SELECT min(city.population) FROM city WHERE city.state_name='hawaii'); what is the smallest city in hawaii
+SELECT river.river_name FROM river WHERE river.traverse='iowa' AND river.length=(SELECT min(river.length) FROM river WHERE river.traverse='iowa'); what is the shortest river in iowa
+SELECT city.city_name FROM city WHERE city.population>150000 AND city.state_name=(SELECT state.state_name FROM state WHERE state.area=(SELECT min(state.area) FROM state )); what are the major cities in the smallest state in the us
+SELECT city.population FROM city WHERE city.city_name=(SELECT state.capital FROM state WHERE state.area=(SELECT max(state.area) FROM state,river WHERE river.traverse=state.state_name AND river.river_name='mississippi')); what is the population of the capital of the largest state through which the mississippi runs
+SELECT river.river_name FROM river WHERE river.traverse='illinois' AND river.length=(SELECT max(river.length) FROM river WHERE river.traverse='illinois'); what is the biggest river in illinois
+SELECT river.river_name FROM river WHERE river.traverse='nebraska' AND river.length=(SELECT min(river.length) FROM river WHERE river.traverse='nebraska'); what is the shortest river in nebraska
+SELECT count(river.river_name) FROM river WHERE river.traverse='colorado'; how many rivers are in colorado
+SELECT city.population FROM city WHERE city.state_name='montana' AND city.population>150000; what are the populations of all the major cities in montana
+SELECT state.population FROM state WHERE state.state_name='new york'; what is the population of new york
+SELECT state.state_name FROM state WHERE state.population=(SELECT max(state.population) FROM state); what state has the most people
+SELECT river.length FROM river WHERE river.river_name='mississippi'; how long is the mississippi
+SELECT river.river_name FROM river WHERE river.length=(SELECT min(river.length) FROM river); what is the shortest river in the usa
+SELECT city.city_name FROM city WHERE city.state_name='wyoming' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='wyoming'); what is the biggest city in wyoming
+SELECT state.area FROM state WHERE state.state_name='maryland'; what is the area of maryland in square kilometers
+SELECT river.river_name FROM river WHERE river.traverse='colorado'; what river flows through colorado
+SELECT city.city_name FROM city WHERE city.state_name='michigan' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='michigan'); what is the largest city in michigan
+SELECT city.population FROM city WHERE city.city_name='new york'; how big is the city of new york
+SELECT border_info.state_name FROM state,border_info WHERE state.state_name=border_info.border AND state.population=(SELECT max(state.population) FROM state); what are the states that border the state with the greatest population
+SELECT state.capital FROM state WHERE state.state_name IN (SELECT border_info.border FROM border_info WHERE border_info.state_name IN (SELECT border_info.border FROM border_info WHERE border_info.state_name = 'texas')); what is the capital of the state that borders the state that borders texas
+SELECT count(river.river_name) FROM river WHERE river.traverse='texas'; how many rivers are there in texas
+SELECT city.city_name FROM city WHERE city.state_name='oklahoma' AND city.population>150000; what are the major cities in oklahoma
+SELECT city.city_name FROM city WHERE city.population=(SELECT min(city.population) FROM city WHERE city.state_name IN(SELECT state.state_name FROM state WHERE state.area=(SELECT min(state.area) FROM state))) AND city.state_name IN(SELECT state.state_name FROM state WHERE state.area=(SELECT min(state.area) FROM state)); what is the smallest city of the smallest state in the us
+SELECT count(river.river_name) FROM river,state WHERE river.traverse=state.state_name AND state.state_name=(SELECT state.state_name FROM state WHERE state.population=(SELECT max(state.population) FROM state )); how many rivers are in the state with the largest population
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='wyoming'; what is the highest point in wyoming
+SELECT state.state_name FROM state WHERE state.density=(SELECT max(state.density) FROM state); which state has the greatest density
+SELECT highlow.lowest_point FROM highlow WHERE highlow.lowest_elevation=(SELECT min(highlow.lowest_elevation) FROM highlow); what is the lowest point in the united states
+SELECT river.length FROM river WHERE river.river_name='mississippi'; how long is the mississippi river in miles
+SELECT river.river_name FROM river WHERE river.traverse='texas'; what are major rivers in texas
+SELECT river.river_name FROM river WHERE river.traverse='arizona'; what rivers run through arizona
+SELECT river.river_name FROM river GROUP BY(river.river_name) ORDER BY count(distinct river.traverse) DESC LIMIT 1; what river traverses the most states ?
+SELECT border_info.border FROM border_info WHERE border_info.state_name='texas'; what states are next to texas
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city,state WHERE city.city_name=state.capital); what is the largest state capital in population
+SELECT city.state_name FROM city WHERE city.city_name='austin'; what states have a city named austin
+SELECT border_info.state_name FROM state,border_info,highlow WHERE(state.state_name=border_info.border)AND(border_info.border=highlow.state_name) AND highlow.lowest_elevation=(SELECT min(highlow.lowest_elevation) FROM highlow) ORDER BY state.area DESC LIMIT 1; what is the largest state that borders the state with the lowest point in the usa
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='colorado'; what is the highest point in colorado
+SELECT state.population FROM state WHERE state.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='texas') AND state.area=(SELECT max(state.area) FROM state WHERE state.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='texas' )); what is the population of the largest state that borders texas
+SELECT river.length FROM river WHERE river.river_name='mississippi'; how long is the mississippi river
+SELECT state.population FROM state WHERE state.state_name='california'; what is the population of california
+SELECT border_info.border FROM border_info WHERE border_info.state_name='alaska'; what states border alaska
+SELECT state.state_name FROM state WHERE state.capital='austin'; what state is austin the capital of
+SELECT city.population FROM city WHERE city.city_name='boston' AND city.state_name='massachusetts'; what is the population of boston massachusetts
+SELECT city.city_name FROM city WHERE city.state_name='colorado' AND city.population>150000; show major cities in colorado
+SELECT river.traverse FROM river WHERE river.length=(SELECT max(river.length) FROM river); which states lie on the largest river in the united states ?
+SELECT highlow.state_name FROM highlow WHERE highlow.highest_elevation=(SELECT max(highlow.highest_elevation) FROM highlow); what state has the highest elevation
+SELECT state.population FROM state WHERE state.state_name='maine'; what is the population of maine
+SELECT river.river_name FROM river WHERE river.traverse IN(SELECT state.state_name FROM state WHERE state.population=(SELECT max(state.population) FROM state)); what rivers flow through the state with the largest population
+SELECT border_info.border AS cnt FROM border_info GROUP BY border_info.border having count(1) = (SELECT max(cnt1) FROM (SELECT border_info.border, count(1) AS cnt1 FROM border_info GROUP BY border_info.border) tmp); which state borders most states ?
+SELECT state.state_name FROM state WHERE state.state_name IN(SELECT border_info.state_name FROM border_info WHERE border_info.border IN(SELECT state.state_name FROM state WHERE state.population=(SELECT max(state.population) FROM state))) AND state.area=(SELECT max(state.area) FROM state WHERE state.state_name IN (SELECT border_info.state_name FROM border_info WHERE border_info.border IN(SELECT state.state_name FROM state WHERE state.population=(SELECT max(state.population) FROM state)))); what is the largest state that borders the state with the highest population
+SELECT border_info.border FROM border_info WHERE border_info.state_name='new york'; which states border new york
+SELECT state.capital FROM state,highlow WHERE state.state_name=highlow.state_name AND highlow.highest_elevation=(SELECT max(highlow.highest_elevation) FROM highlow); what is the capital of the state with the highest point
+SELECT mountain.mountain_name FROM mountain WHERE mountain.mountain_altitude=(SELECT max(mountain.mountain_altitude) FROM mountain); what is the tallest mountain in america
+SELECT state.state_name FROM state WHERE state.state_name IN (SELECT river.traverse FROM river WHERE river.river_name = 'mississippi' ) ORDER BY state.population DESC LIMIT 1; what state which the mississippi runs through has the largest population
+SELECT distinct highlow.highest_point FROM highlow WHERE highlow.highest_elevation = (SELECT max(highlow.highest_elevation) FROM highlow); what is the highest point in the country
+SELECT city.city_name FROM city WHERE city.state_name='montana' AND city.population>150000; what are the major cities in montana
+SELECT highlow.highest_point FROM highlow WHERE highlow.highest_elevation = (SELECT max(highlow.highest_elevation) FROM highlow); what is the highest point in the united states
+SELECT highlow.lowest_point FROM highlow WHERE highlow.state_name='wisconsin'; what is the lowest point in wisconsin
+SELECT count(river.river_name) FROM river; how many rivers are there in us
+SELECT city.state_name FROM city WHERE city.city_name='pittsburgh'; what state is pittsburgh in
+SELECT state.population FROM state WHERE state.state_name='nevada'; how many people are in the state of nevada
+SELECT border_info.border FROM border_info WHERE border_info.state_name='maine'; what states neighbor maine
+SELECT river.river_name FROM river WHERE river.length=(SELECT min(river.length) FROM river); what is the shortest river
+SELECT distinct river.river_name FROM river WHERE river.length IN ( SELECT max(mx) FROM (  SELECT river.traverse, max(river.length) AS mx FROM river WHERE river.traverse IN ( SELECT border_info.state_name FROM border_info WHERE border_info.border IN (SELECT border_info.border FROM border_info GROUP BY border_info.border having count(1) = (SELECT max(cnt1) FROM (SELECT border_info.border, count(1) AS cnt1 FROM border_info GROUP BY border_info.border) tmp1) ) ) GROUP BY river.traverse ) tmp2 ); what is the longest river that passes the states that border the state that borders the most states
+SELECT river.traverse FROM river WHERE river.length > 750 GROUP BY river.traverse ORDER BY count(1) DESC LIMIT 1; what state has the most major rivers running through it ?
+SELECT distinct state.capital FROM state; name the 50 capitals in the usa
+SELECT state.density FROM state WHERE state.state_name='south dakota'; what is the population density of south dakota
+SELECT highlow.lowest_point FROM highlow WHERE highlow.state_name='oregon'; what is the lowest point in oregon
+SELECT city.city_name FROM city WHERE city.state_name='virginia'; give me the cities in virginia
+SELECT state.state_name FROM state WHERE state.density=(SELECT min(state.density) FROM state); what state has the sparsest population density
+SELECT count(city.state_name) FROM city WHERE city.city_name='springfield'; how many states have a city named springfield
+SELECT count(city.state_name) FROM city WHERE city.city_name='rochester'; how many states have a city called rochester
+SELECT highlow.highest_elevation FROM highlow WHERE highlow.state_name='montana'; how high is the highest point in montana
+SELECT border_info.border FROM border_info WHERE border_info.state_name='hawaii'; what states border hawaii
+SELECT border_info.border FROM border_info WHERE border_info.state_name='michigan'; what are the neighboring states for michigan
+SELECT count(city.city_name) FROM city; how many cities does the usa have
+SELECT city.state_name FROM city WHERE city.city_name='flint'; what state has the city flint
+SELECT border_info.border FROM border_info WHERE border_info.state_name IN(SELECT state.state_name FROM state WHERE state.population=(SELECT min(state.population) FROM state)); what state borders the state with the smallest population
+SELECT border_info.border FROM border_info WHERE border_info.state_name IN ( SELECT tmp1.state_name FROM (SELECT city.state_name, count(1) AS cnt1 FROM city GROUP BY city.state_name) tmp1 WHERE cnt1 = (SELECT max(cnt) FROM (SELECT count(1) AS cnt FROM city GROUP BY city.state_name) tmp)) what states border the states with the most cities ?
+SELECT border_info.border FROM border_info WHERE border_info.state_name='florida'; which state borders florida
+SELECT river.traverse FROM river,state WHERE river.traverse=state.state_name GROUP BY state.state_name ORDER BY count(river.river_name) DESC LIMIT 1 ; what state is the state with the most rivers ?
+SELECT river.river_name FROM river WHERE river.length=(SELECT min(river.length) FROM river); what is the shortest river in the us
+SELECT lake.lake_name FROM lake WHERE lake.state_name IN (SELECT border_info.border FROM border_info WHERE border_info.state_name = 'texas'); what are the lakes in states bordering texas
+SELECT state.state_name FROM state WHERE state.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='texas') AND state.area=(SELECT min(state.area) FROM state WHERE state.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='texas' )); what is the smallest state that borders texas
+SELECT river.river_name FROM river WHERE river.traverse='kansas'; what river flows through kansas
+SELECT state.population FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi'); what are the populations of the states through which the mississippi runs
+SELECT river.river_name FROM river GROUP BY(river.river_name) ORDER BY count(distinct river.traverse) DESC LIMIT 1; which river runs through the most states ?
+SELECT count(city.city_name) FROM city WHERE city.state_name='florida' AND city.population>150000; how many major cities are in florida
+SELECT river.river_name FROM river WHERE river.traverse='new york' AND river.length=(SELECT max(river.length) FROM river WHERE river.traverse='new york'); what is the longest river in new york
+SELECT river.length FROM river WHERE river.river_name='rio grande'; how long is the rio grande river
+SELECT highlow.highest_elevation FROM highlow; how high are the highest points of all the states
+SELECT city.city_name FROM city WHERE city.state_name='pennsylvania'; what cities are located in pennsylvania
+SELECT city.city_name FROM city WHERE city.state_name='texas' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='texas'); what is the largest city in texas
+SELECT city.city_name FROM city WHERE city.state_name='texas' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='texas'); what texas city has the largest population
+SELECT state.population FROM state WHERE state.state_name='missouri'; what can you tell me about the population of missouri
+SELECT state.population FROM state WHERE state.area=(SELECT max(state.area) FROM state); what is the population of the largest state
+SELECT river.river_name FROM river WHERE river.traverse='texas'; what are the rivers in the state of texas
+SELECT count(river.traverse) FROM river WHERE river.river_name='mississippi'; how many states does the mississippi run through
+SELECT river.river_name FROM river WHERE river.traverse IN(SELECT state.state_name FROM state WHERE state.area=(SELECT min(state.area) FROM state)) AND river.length=(SELECT max(river.length) FROM river WHERE river.traverse IN(SELECT state.state_name FROM state WHERE state.area=(SELECT min(state.area) FROM state))); what is the longest river in the smallest state in the usa
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='oregon'; could you tell me what is the highest point in the state of oregon
+SELECT city.state_name FROM city WHERE city.city_name='springfield'; what states have towns named springfield
+SELECT state.population/state.area FROM state WHERE state.state_name='pennsylvania'; what is the average population per square km in pennsylvania
+SELECT river.river_name FROM river WHERE river.traverse='new mexico'; what rivers are in new mexico
+SELECT river.river_name FROM river WHERE river.traverse='arkansas'; name the rivers in arkansas
+SELECT count(river.traverse) FROM river WHERE river.river_name='colorado'; how many states does the colorado river flow through
+SELECT sum(state.population) FROM state; what is the combined population of all 50 states
+SELECT state.population FROM state WHERE state.state_name='rhode island'; what is the population of rhode island
+SELECT city.city_name FROM city WHERE city.state_name='illinois' AND city.population>150000; what are the names of the major cities in illinois
+SELECT state.state_name FROM state WHERE state.capital='dover'; what states capital is dover
+SELECT river.traverse FROM river WHERE river.river_name='missouri'; what states does the missouri river run through
+SELECT city.state_name FROM city WHERE city.city_name='san jose'; where is san jose
+SELECT river.river_name FROM river WHERE river.traverse='new york' AND river.length=(SELECT max(river.length) FROM river WHERE river.traverse='new york'); what is the longest river flowing through new york
+SELECT river.traverse FROM river WHERE river.length=(SELECT max(river.length) FROM river); which state has the longest river
+SELECT city.population FROM city WHERE city.city_name='san francisco'; how many people live in san francisco
+SELECT border_info.border FROM border_info WHERE border_info.state_name='georgia'; what states border georgia
+SELECT state.population FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi'); what are the populations of states through which the mississippi river runs
+SELECT river.river_name FROM river WHERE river.traverse='illinois' AND river.length>750; what major rivers run through illinois
+SELECT border_info.border FROM border_info WHERE border_info.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='florida')); what states border states that border states that border florida
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='ohio'; what is the highest point in ohio
+SELECT count(border_info.border) FROM border_info WHERE border_info.state_name='tennessee'; how many states border tennessee
+SELECT state.population FROM state WHERE state.state_name='new york'; how many people are there in new york
+SELECT city.city_name FROM city WHERE city.state_name='virginia'; give me the cities in virginia
+SELECT state.population FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi'); what are the populations of the states through which the mississippi run
+SELECT count(distinct border_info.state_name) FROM border_info; how many states border at least one other state
+SELECT city.state_name FROM city WHERE city.city_name='scotts valley'; where is scotts valley
+SELECT border_info.border FROM border_info WHERE border_info.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi'); what states border states that the mississippi runs through
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='montana'; where is the highest point in montana
+SELECT state.state_name FROM state WHERE state.density=(SELECT max(state.density) FROM state); what state has the highest population density
+SELECT border_info.border FROM border_info WHERE border_info.state_name='new hampshire'; what states border new hampshire
+SELECT state.capital FROM state,border_info WHERE border_info.border=state.state_name AND border_info.state_name='texas'; what are the capital cities of the states which border texas
+SELECT state.state_name FROM state WHERE state.state_name NOT IN(SELECT border_info.state_name FROM border_info); name the states which have no surrounding states
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='mississippi'); what are the high points of states surrounding mississippi
+SELECT river.river_name FROM river WHERE river.length=(SELECT min(river.length) FROM river); what is the shortest river in the united states
+SELECT river.river_name FROM river WHERE river.traverse='mississippi' AND river.length=(SELECT max(river.length) FROM river WHERE river.traverse='mississippi'); what is the longest river in mississippi
+SELECT river.river_name FROM river WHERE river.traverse='colorado' AND river.length=(SELECT max(river.length) FROM river WHERE river.traverse='colorado'); what is the longest river that flows through colorado
+SELECT city.state_name FROM city WHERE city.city_name='new orleans'; where is new orleans
+SELECT state.state_name FROM state WHERE state.density=(SELECT max(state.density) FROM state); what state has the greatest population density
+SELECT city.population FROM city WHERE city.city_name='sacramento'; what is the population of sacramento
+SELECT state.area FROM state WHERE state.state_name='maine'; what is the area of maine
+SELECT max(distinct highlow.highest_elevation) FROM highlow WHERE highlow.state_name='texas'; what is the height of the highest mountain in texas
+SELECT city.city_name FROM city WHERE city.population>150000; what are the major cities of the united states
+SELECT city.population FROM city WHERE city.state_name='wisconsin' AND city.population>150000; what is the population of the major cities in wisconsin
+SELECT state.population FROM state WHERE state.state_name='oregon'; what is the population of oregon
+SELECT river.river_name FROM river WHERE river.length=(SELECT max(river.length) FROM river); what is the longest river in america
+SELECT state.capital FROM state WHERE state.state_name='texas'; what is the capital of texas
+SELECT state.state_name FROM state WHERE state.population=(SELECT max(state.population) FROM state); which state has the most people
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name IN(SELECT state.state_name FROM state WHERE state.capital='des moines'); what is the highest point in the state with capital des moines
+SELECT state.capital FROM state WHERE state.state_name='maryland'; what is the capital of maryland
+SELECT river.river_name FROM river WHERE river.traverse='texas' AND river.length=(SELECT max(river.length) FROM river WHERE river.traverse='texas'); what are the biggest rivers in texas
+SELECT state.area FROM state WHERE state.state_name='florida'; what is the size of florida
+SELECT count(city.state_name) FROM city WHERE city.city_name='austin'; how many states have cities named austin
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name IN(SELECT state.state_name FROM state WHERE state.capital='des moines'); what is the highest point in the state with the capital des moines
+SELECT river.river_name FROM river WHERE river.length=(SELECT max(river.length) FROM river); name the longest river in us
+SELECT count(border_info.border) FROM border_info WHERE border_info.state_name='iowa'; how many states does iowa border
+SELECT river.river_name FROM river WHERE river.traverse='california' AND river.length=(SELECT max(river.length) FROM river WHERE river.traverse='california'); what is the longest river in california
+SELECT count(border_info.border) FROM border_info WHERE border_info.state_name='alaska'; how many states border alaska
+SELECT border_info.border FROM border_info WHERE border_info.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi'); which states border states through which the mississippi traverses ?
+SELECT river.traverse FROM river WHERE river.length=(SELECT max(river.length) FROM river); what are the states through which the longest river runs
+SELECT state.state_name FROM state WHERE state.state_name IN (SELECT border_info.border FROM border_info WHERE border_info.state_name = 'texas' ) ORDER BY state.population DESC LIMIT 1; what state that borders texas has the highest population ?
+SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state); state the state with the largest area
+SELECT city.city_name FROM city WHERE city.state_name='texas' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='texas'); what cities in texas have the highest number of citizens
+SELECT river.traverse FROM river WHERE river.length=(SELECT max(river.length) FROM river); which states does the longest river cross
+SELECT highlow.lowest_point FROM highlow WHERE highlow.state_name='louisiana'; what is the lowest point in louisiana
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city,state WHERE city.city_name=state.capital); what is the largest capital
+SELECT count(state.state_name) FROM state; how many states are in the united states
+SELECT count(border_info.border) FROM border_info WHERE border_info.state_name='colorado' AND border_info.border IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='new mexico'); how many states border colorado and border new mexico
+SELECT state.state_name FROM state; list the states
+SELECT state.capital FROM state WHERE state.state_name='iowa'; what is capital of iowa
+SELECT river.traverse FROM river WHERE river.river_name='missouri'; which states does the missouri river pass through
+SELECT state.area FROM state WHERE state.state_name='south carolina'; what is the area of south carolina
+SELECT count(city.city_name) FROM city WHERE city.state_name='arizona' AND city.population>150000; how many major cities are in arizona
+SELECT city.city_name FROM city WHERE city.population=(SELECT min(city.population) FROM city WHERE city.state_name IN(SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state))) AND city.state_name IN(SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state)); what is the smallest city in the largest state
+SELECT count(city.city_name) FROM city WHERE city.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='utah') AND city.population>150000; how many major cities are in states bordering utah
+SELECT lake.lake_name FROM lake WHERE lake.state_name='california'; give me the lakes in california
+SELECT city.city_name FROM city WHERE city.state_name='texas' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='texas'); what cities in texas have the highest populations
+SELECT sum(state.population) FROM state ,border_info WHERE state.state_name=border_info.border AND border_info.state_name='texas'; what is the total population of the states that border texas
+SELECT city.city_name FROM city WHERE city.state_name='north carolina' AND city.population>150000; what are the major cities in north carolina
+SELECT city.state_name FROM city,state WHERE city.state_name=state.state_name AND city.city_name='springfield'; what states in the united states have a city of springfield
+SELECT lake.lake_name FROM lake; what are the major lakes in united states 
+SELECT river.traverse FROM river WHERE river.river_name='mississippi'; what states does the mississippi run through
+SELECT highlow.state_name FROM highlow WHERE highlow.lowest_elevation=(SELECT min(highlow.lowest_elevation) FROM highlow); what is the name of the state with the lowest point
+SELECT city.state_name FROM city WHERE city.city_name='indianapolis'; where is indianapolis
+SELECT city.state_name FROM city WHERE city.city_name='des moines'; what state is des moines located in
+SELECT lake.lake_name FROM lake; show me all the major lakes in the us 
+SELECT mountain.state_name FROM mountain WHERE mountain.mountain_name='mckinley'; in what state is mount mckinley
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='florida'; what is the highest point in florida
+SELECT count(river.river_name) FROM river WHERE river.traverse='ohio' AND river.length>750; how many major rivers cross ohio
+SELECT river.traverse FROM river WHERE river.river_name='colorado'; which states does the colorado river run through
+SELECT border_info.border FROM border_info WHERE border_info.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='mississippi'); what states border states that border colorado
+SELECT city.city_name FROM city WHERE city.state_name='texas' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='texas'); what is the most populous city in texas
+SELECT distinct river.traverse FROM river WHERE river.length=(SELECT min(distinct river.length) FROM river); what state has the shortest river
+SELECT highlow.lowest_point FROM highlow WHERE highlow.state_name='california'; what is the lowest point in california
+SELECT count(distinct river.traverse) FROM river WHERE river.length>750; how many states are next to major rivers
+SELECT state.population FROM state WHERE state.state_name='illinois'; what is the population of illinois
+SELECT border_info.border FROM border_info WHERE border_info.state_name='rhode island'; what states border rhode island
+SELECT city.population FROM city WHERE city.city_name=(SELECT state.capital FROM state WHERE state.state_name='georgia'); how many people live in the capital of georgia
+SELECT city.city_name FROM city WHERE city.state_name='minnesota' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='minnesota'); what is the largest city in minnesota by population
+SELECT state.state_name FROM state left outer join border_info ON state.state_name = border_info.state_name WHERE state.state_name <> 'alaska' AND state.state_name <> 'hawaii' GROUP BY state.state_name having count(border_info.border) = (SELECT min(cnt) FROM (SELECT state.state_name, count(border_info.border) AS cnt FROM state left outer join border_info ON state.state_name = border_info.state_name WHERE state.state_name <> 'alaska' AND state.state_name <> 'hawaii' GROUP BY state.state_name) tmp); what state borders the least states excluding alaska and excluding hawaii
+SELECT state.state_name FROM state WHERE state.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='ohio') AND state.area=(SELECT min(state.area) FROM state WHERE state.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='ohio' )); what is the smallest state bordering ohio
+SELECT state.state_name FROM state WHERE state.density=(SELECT max(state.density) FROM state); what state has the largest population density
+SELECT highlow.highest_point FROM highlow,state WHERE highlow.state_name=state.state_name AND state.area=(SELECT min(state.area) FROM state); what is the highest point in the smallest state
+SELECT mountain.mountain_altitude FROM mountain WHERE mountain.mountain_name='mckinley'; what is the height of mount mckinley
+SELECT state.state_name FROM state WHERE state.capital='sacramento'; sacramento is the capital of which state
+SELECT count(river.river_name) FROM river WHERE river.traverse='texas'; how many rivers run through texas
+SELECT city.population FROM city WHERE city.state_name='alaska' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='alaska'); how large is the largest city in alaska
+SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state); what is the largest state in usa
+SELECT border_info.border FROM border_info WHERE border_info.state_name='mississippi'; what states are next to the mississippi ?
+SELECT max(highlow.highest_elevation) FROM highlow; what is the elevation of the highest point in the usa
+SELECT distinct state.state_name FROM border_info,state WHERE border_info.state_name='oklahoma' AND state.state_name=border_info.border AND state.population=(SELECT max(state.population) FROM border_info,state WHERE border_info.state_name='oklahoma' AND state.state_name=border_info.border); what is the most populated state bordering oklahoma
+SELECT state.state_name FROM state WHERE state.density=(SELECT min(state.density) FROM state); what is the state with the lowest population density
+SELECT river.traverse FROM river WHERE river.length=(SELECT min(river.length) FROM river); what states does the shortest river run through
+SELECT state.state_name FROM state WHERE state.population=(SELECT min(state.population) FROM state); what state has the smallest population
+SELECT city.city_name FROM city WHERE city.state_name='texas' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='texas'); what is the biggest city in texas
+SELECT city.state_name FROM city WHERE city.population=(SELECT max(city.population) FROM city); what state has the largest city
+SELECT mountain.state_name FROM mountain WHERE mountain.mountain_name='whitney'; where is mount whitney
+SELECT highlow.lowest_point FROM highlow WHERE highlow.state_name='texas'; what is the lowest point in the state of texas
+SELECT river.river_name FROM river WHERE river.traverse='alaska' AND river.length=(SELECT min(river.length) FROM river WHERE river.traverse='alaska'); what is the shortest river in alaska
+SELECT highlow.highest_point FROM highlow,state WHERE highlow.state_name=state.state_name AND state.state_name IN(SELECT state.state_name FROM state WHERE state.population=(SELECT min(state.population) FROM state)); what is the highest point in the state with the smallest population
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city,state WHERE city.city_name=state.capital); what is the most populated capital in the usa
+SELECT state.state_name FROM state; give me all the states of usa
+SELECT city.city_name FROM city WHERE city.state_name='alabama' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='alabama'); what is the largest city in alabama
+SELECT state.state_name FROM state WHERE state.density=(SELECT min(state.density) FROM state); which state has the sparsest population density
+SELECT city.population FROM city WHERE city.city_name='denver'; what is the population of denver
+SELECT border_info.border FROM border_info WHERE border_info.state_name='texas'; which states border texas
+SELECT river.river_name FROM river WHERE river.river_name NOT IN(SELECT river.river_name FROM river WHERE river.traverse='tennessee'); what rivers do not run through tennessee
+SELECT river.river_name FROM river WHERE river.traverse IN (SELECT city.state_name FROM city WHERE city.population = (SELECT max(city.population) FROM city)); which rivers run through the state with the largest city in the us ?
+SELECT city.state_name FROM city WHERE city.city_name='austin'; what states have cities named austin
+SELECT state.population FROM state WHERE state.density=(SELECT max(state.density) FROM state); how many people live in the state with the largest population density
+SELECT river.river_name FROM river WHERE river.traverse IN (SELECT highlow.state_name FROM highlow WHERE highlow.lowest_elevation= (SELECT min(highlow.lowest_elevation) FROM highlow)); which rivers run through the state with the lowest elevation in the usa
+SELECT state.state_name FROM state WHERE state.density=(SELECT max(state.density) FROM state); what is the state with the largest density in usa
+SELECT city.city_name FROM city WHERE city.state_name='oregon' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='oregon'); what is the biggest city in oregon
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='rhode island'; what is the highest point in rhode island
+SELECT count(river.river_name) FROM river WHERE river.traverse='new york'; how many rivers are in new york
+SELECT city.city_name FROM city WHERE city.population>150000; what are the major cities of the us
+SELECT mountain.mountain_name FROM mountain WHERE mountain.state_name='alaska'; what mountains are in alaska
+SELECT city.population FROM city WHERE city.city_name='springfield' AND city.state_name='missouri'; what is the population of springfield missouri
+SELECT border_info.border FROM border_info WHERE border_info.state_name='michigan'; which states border michigan
+SELECT max(tmp.states) FROM(SELECT count(distinct border_info.border) AS states, border_info.state_name FROM border_info GROUP BY border_info.state_name) AS tmp; how many states border the state that borders the most states
+SELECT count(river.traverse) FROM river WHERE river.length>750; how many states have major rivers
+SELECT state.density FROM state WHERE state.state_name='texas'; what is the population density of texas
+SELECT city.city_name FROM city WHERE city.state_name='ohio' AND city.population>150000; what are the major cities in ohio
+SELECT state.state_name FROM state WHERE state.state_name IN (SELECT border_info.border FROM border_info WHERE border_info.state_name = 'texas' ) ORDER BY state.area DESC LIMIT 1; what state that borders texas is the largest ?
+SELECT city.city_name FROM city WHERE city.state_name='arizona' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='arizona'); what is the biggest city in arizona
+SELECT city.state_name FROM city WHERE city.city_name='boston'; what state is boston in
+SELECT state.state_name FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.length=(SELECT max(river.length) FROM river)) AND state.area=(SELECT min(state.area) FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.length=(SELECT max(river.length) FROM river))); what is the smallest state through which the longest river runs
+SELECT river.river_name FROM river WHERE river.traverse='arkansas'; name the rivers in arkansas
+SELECT river.river_name FROM river WHERE river.traverse='louisiana'; what rivers run through louisiana
+SELECT river.river_name FROM river WHERE river.traverse='colorado'; name all the rivers in colorado
+SELECT river.traverse FROM river WHERE river.river_name='potomac'; what are the states that the potomac run through
+SELECT state.state_name FROM state WHERE state.population=(SELECT max(state.population) FROM state); what is the most populous state in the us
+SELECT highlow.highest_elevation FROM highlow WHERE highlow.state_name='new mexico'; what is the highest elevation in new mexico
+SELECT state.state_name FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi') AND state.area=(SELECT max(state.area) FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi')); what is the largest state traversed by the mississippi river
+SELECT count(river.river_name) FROM river WHERE river.traverse IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='colorado'); how many rivers run through the states bordering colorado
+SELECT city.state_name FROM city WHERE city.city_name='fort wayne'; where is fort wayne
+SELECT distinct river.river_name FROM river WHERE NOT river.traverse='texas' AND river.length=(SELECT max(river.length) FROM river WHERE NOT river.traverse='texas'); what is the longest river that does not run through texas
+SELECT city.population FROM city WHERE city.city_name='seattle'; what is the population of seattle
+SELECT count(river.river_name) FROM river WHERE river.traverse='colorado'; how many rivers are found in colorado
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='texas'; what is the highest mountain in texas
+SELECT state.state_name FROM state WHERE state.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='texas') AND state.area=(SELECT max(state.area) FROM state WHERE state.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='texas')); what is the largest state bordering texas
+SELECT river.river_name FROM river WHERE river.length=(SELECT min(river.length) FROM river); which is the shortest river
+SELECT river.length FROM river WHERE river.river_name='missouri'; how long is the missouri river
+SELECT count(city.city_name) FROM city WHERE city.population>150000; how many cities are there in us
+SELECT state.state_name FROM state WHERE state.population=(SELECT max(state.population) FROM state); what state has the highest population
+SELECT river.river_name FROM river WHERE river.traverse='west virginia'; what rivers run through west virginia
+SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state); what is the biggest state
+SELECT river.river_name FROM river GROUP BY(river.river_name) ORDER BY count(distinct river.traverse) DESC LIMIT 1; what river runs through the most states
+SELECT count(city.city_name) FROM city; how many cities are there in the us
+SELECT river.traverse FROM river GROUP BY river.traverse ORDER BY count(1) DESC LIMIT 1; which state has the most rivers running through it ?
+SELECT river.river_name FROM river WHERE river.traverse='nevada'; what rivers are in nevada
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city WHERE city.state_name IN(SELECT state.state_name FROM state WHERE state.area=(SELECT min(state.area) FROM state))) AND city.state_name IN(SELECT state.state_name FROM state WHERE state.area=(SELECT min(state.area) FROM state)); what is the biggest city in the smallest state
+SELECT highlow.highest_elevation FROM highlow WHERE highlow.state_name='florida'; how high is the highest point of florida
+SELECT city.city_name FROM city WHERE city.population IN (SELECT mx FROM (SELECT state.state_name , max(city.population) AS mx FROM state, city WHERE state.state_name = city.state_name AND state.state_name IN ( SELECT border_info.border FROM border_info GROUP BY border_info.border having count(1) = (SELECT max(cnt1) FROM (SELECT border_info.border, count(1) AS cnt1 FROM border_info GROUP BY border_info.border) tmp1)) GROUP BY state.state_name) tmp2); what are the largest cities in the states that border the largest state
+SELECT river.river_name FROM river WHERE river.traverse='austin'; what rivers run through austin texas ?
+SELECT river.traverse FROM river,state WHERE river.traverse=state.state_name GROUP BY state.state_name ORDER BY count(river.river_name) DESC LIMIT 1 ; which state contains most rivers ?
+SELECT state.state_name FROM state WHERE state.state_name NOT IN (SELECT river.traverse FROM river); what state has no rivers
+SELECT river.length FROM river WHERE river.river_name='rio grande'; how long is rio grande
+SELECT state.population FROM state WHERE state.state_name='south dakota'; how many people live in south dakota
+SELECT city.city_name FROM city WHERE city.state_name='california'; what are the cities in california
+SELECT river.river_name FROM river WHERE river.traverse='pennsylvania' AND river.length=(SELECT max(river.length) FROM river WHERE river.traverse='pennsylvania'); what is the longest river in pennsylvania
+SELECT state.area FROM state WHERE state.state_name='california'; what is the size of california
+SELECT state.capital FROM state WHERE state.state_name='vermont'; what is the capital of vermont
+SELECT state.population FROM state WHERE state.state_name='hawaii'; how many people live in hawaii
+SELECT distinct river.length FROM river WHERE river.river_name = ( SELECT river_name FROM (SELECT river.river_name, count(1) AS cnt FROM river GROUP BY river.river_name ) tmp1 WHERE tmp1.cnt = (SELECT max (cnt) FROM (SELECT river.river_name, count(1) AS cnt FROM river GROUP BY river.river_name ) tmp2 ) ); what is the length of the river that traverses the most states
+SELECT state.state_name FROM state WHERE state.state_name NOT IN(SELECT border_info.state_name FROM border_info); which states border no other states ?
+SELECT city.state_name FROM city WHERE city.city_name='houston'; where is houston
+SELECT river.traverse FROM river WHERE river.river_name='missouri'; which states does the missouri river run through
+SELECT river.traverse FROM river WHERE river.river_name='red'; which state has the red river
+SELECT count(city.city_name) FROM city WHERE city.population>150000; how many major cities are there
+SELECT city.city_name FROM city WHERE city.state_name='georgia' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='georgia'); what is the biggest city in georgia
+SELECT count(river.river_name) FROM river,highlow WHERE river.traverse=highlow.state_name AND highlow.highest_elevation=(SELECT max(highlow.highest_elevation) FROM highlow); how many rivers are in the state with the highest point
+SELECT city.city_name FROM city WHERE city.state_name='texas' AND city.population>150000; what are the major cities of texas
+SELECT city.population FROM city WHERE city.city_name='boulder'; population of boulder
+SELECT mountain.state_name FROM mountain WHERE mountain.mountain_altitude = (SELECT max(mountain.mountain_altitude) FROM mountain); which state has the highest peak in the country ?
+SELECT river.river_name FROM river WHERE river.length=(SELECT max(river.length) FROM river); give me the longest river that passes through the us
+SELECT border_info.border FROM border_info GROUP BY border_info.border having count(1) = (SELECT max(cnt1) FROM (SELECT border_info.border, count(1) AS cnt1 FROM border_info GROUP BY border_info.border) tmp); what state borders most other states ?
+SELECT count(border_info.border) FROM border_info WHERE border_info.state_name='missouri'; how many states does missouri border
+SELECT city.population FROM city WHERE city.city_name='springfield' AND city.state_name='south dakota'; what is the population of springfield south dakota
+SELECT city.state_name FROM city GROUP BY city.state_name ORDER BY count(1) DESC LIMIT 1; what state has the most cities ?
+SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state); what is the biggest state in the usa
+SELECT state.capital FROM state WHERE state.area=(SELECT max(state.area) FROM state); what is the capital of the largest state
+SELECT count(city.city_name) FROM city WHERE city.state_name='montana'; how many cities are in montana
+SELECT highlow.highest_point FROM highlow WHERE(highlow.state_name=(SELECT river.traverse FROM river,state WHERE river.traverse=state.state_name GROUP BY state.state_name ORDER BY count(river.river_name) DESC LIMIT 1)); what is the highest point in the state with the most rivers
+SELECT city.state_name FROM city WHERE city.city_name='springfield'; where is springfield
+SELECT state.area FROM state; what is the area of the states
+SELECT city.city_name FROM city WHERE city.state_name='washington' AND city.population=(SELECT min(city.population) FROM city WHERE city.state_name='washington'); what is the smallest city in washington
+SELECT count(river.river_name) FROM river WHERE river.traverse='washington'; how many rivers in washington
+SELECT state.area FROM state WHERE state.state_name='texas'; how big is texas
+SELECT border_info.border FROM border_info WHERE border_info.state_name='alaska'; which states border alaska
+SELECT count(river.traverse) FROM river WHERE river.river_name='colorado'; how many states does the colorado river run through
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city); what is the biggest city in the usa
+SELECT river.traverse FROM river WHERE river.river_name='colorado'; what states have rivers named colorado
+SELECT city.city_name FROM city WHERE city.state_name='wyoming' AND city.population>150000; what are the major cities in wyoming
+SELECT count(river.river_name) FROM river WHERE river.traverse='alaska'; how many rivers does alaska have
+SELECT state.state_name FROM state WHERE state.area=(SELECT min(state.area) FROM state); what state has the smallest area
+SELECT river.river_name FROM river WHERE river.traverse='texas' AND river.length=(SELECT min(river.length) FROM river WHERE river.traverse='texas'); what is the shortest river in texas
+SELECT state.area FROM state WHERE state.state_name='alaska'; how big is alaska
+SELECT state.state_name FROM state WHERE state.density=(SELECT min(state.density) FROM state); what state has the least population density
+SELECT river.length FROM river WHERE river.length=(SELECT max(river.length) FROM river); what is the length of the longest river in the usa
+SELECT river.river_name FROM river WHERE river.traverse='utah'; what rivers are in utah
+SELECT border_info.border FROM border_info WHERE border_info.state_name='south dakota'; which states border south dakota
+SELECT state.capital FROM state WHERE state.state_name='georgia'; what is the capital of georgia
+SELECT count(city.city_name) FROM city WHERE city.state_name='pennsylvania' AND city.population>150000; how many big cities are in pennsylvania
+SELECT highlow.lowest_elevation FROM highlow,river WHERE river.river_name='mississippi'  AND river.traverse=highlow.state_name; which is the lowest point of the states that the mississippi runs through
+SELECT count(distinct river.traverse) FROM river WHERE river.length=(SELECT min(distinct river.length) FROM river); how many states in the us does the shortest river run through
+SELECT count(state.state_name) FROM state; how many states are there in united states
+SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state); what state is the biggest
+SELECT river.river_name FROM river WHERE river.traverse='indiana'; what are the rivers in the state of indiana
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city,state WHERE city.city_name=state.capital); what capital is the largest in the us
+SELECT city.population FROM city WHERE city.city_name='boston'; what is the population of boston
+SELECT state.state_name FROM state WHERE state.capital='columbus'; what state is columbus the capital of
+SELECT sum(state.population)/sum(state.area) FROM state; what is the average population per square km in the us
+SELECT city.city_name FROM city WHERE city.state_name='texas'; give me the cities in texas
+SELECT state.area FROM state WHERE state.state_name='new mexico'; how big is new mexico
+SELECT state.population FROM state WHERE state.state_name='district of columbia'; what is the population of washington dc
+SELECT river.river_name FROM river WHERE river.traverse='missouri'; what rivers flow through missouri
+SELECT river.traverse FROM river WHERE river.river_name='colorado'; what states does the colorado river run through
+SELECT state.population FROM state WHERE state.area=(SELECT max(state.area) FROM state); what is the population of the state with the largest area
+SELECT city.state_name FROM city WHERE city.city_name='dallas'; what state is dallas in
+SELECT state.population FROM state WHERE state.state_name='idaho'; what is the population of idaho
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city); whats the largest city ?
+SELECT state.capital FROM state WHERE state.state_name='utah'; what is the capital of utah
+SELECT river.river_name FROM river WHERE river.traverse='montana'; what are the rivers of montana
+SELECT count(border_info.border) FROM border_info WHERE border_info.state_name='texas'; how many states border texas
+SELECT city.state_name FROM city WHERE city.city_name='baton rouge'; where is baton rouge
+SELECT river.river_name FROM river WHERE river.traverse IN(SELECT border_info.border FROM border_info WHERE border_info.state_name IN(SELECT state.state_name FROM state WHERE state.population=(SELECT max(state.population) FROM state ))); what rivers flow through states that border the state with the largest population
+SELECT state.area FROM state WHERE state.state_name='idaho'; what is the area of idaho
+SELECT state.population FROM state WHERE state.state_name='montana'; how many people live in montana
+SELECT state.capital FROM state,border_info WHERE border_info.border=state.state_name AND border_info.state_name='texas'; what are the capitals of states that border texas
+SELECT city.city_name FROM city WHERE city.state_name='wisconsin' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='wisconsin'); what is the largest city in wisconsin
+SELECT count(river.river_name) FROM river WHERE river.traverse='missouri'; how many rivers are in missouri
+SELECT state.state_name FROM state; what are the states
+SELECT city.state_name FROM city WHERE city.population=(SELECT max(city.population) FROM city); what state has the city with the largest population
+SELECT city.population FROM city WHERE city.city_name='kalamazoo'; how many people live in kalamazoo
+SELECT state.capital FROM state WHERE state.state_name='maine'; what is the capital of maine
+SELECT state.capital FROM state WHERE state.state_name='texas'; what is the capital of the state texas
+SELECT state.density FROM state WHERE state.area=(SELECT min(state.area) FROM state); what is the population density of the state with the smallest area
+SELECT city.state_name FROM city WHERE city.population=(SELECT max(city.population) FROM city); which state has the largest city
+SELECT count(river.traverse) FROM river WHERE river.river_name='mississippi'; how many states does the mississippi river run through
+SELECT state.population FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi'); what are the populations of the states through which the mississippi river run
+SELECT city.city_name FROM city WHERE city.population>150000 AND city.state_name=(SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state)); what are the major cities in the largest state
+SELECT city.city_name FROM city WHERE city.state_name='california' AND city.population>150000; what are the major cities in california
+SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state); give me the largest state
+SELECT state.area FROM state WHERE state.state_name='alaska'; what is the area of alaska
+SELECT count(river.traverse) FROM river WHERE river.river_name='missouri'; how many states does the missouri river run through
+SELECT state.area FROM state WHERE state.area=(SELECT min(state.area) FROM state); what is the area of the smallest state
+SELECT river.river_name FROM river WHERE river.traverse='colorado'; what rivers run through colorado
+SELECT state.capital FROM state WHERE state.state_name='washington'; what is the capital of washington
+SELECT sum(state.area) FROM state; what is the area of all the states combined
+SELECT border_info.border FROM border_info WHERE border_info.state_name='arkansas'; what states border arkansas
+SELECT highlow.state_name FROM highlow WHERE highlow.highest_elevation=(SELECT max(highlow.highest_elevation) FROM highlow); in which state does the highest point in usa exist
+SELECT highlow.state_name FROM highlow WHERE highlow.lowest_elevation=(SELECT min(highlow.lowest_elevation) FROM highlow); what is the state with the lowest point
+SELECT state.population FROM state WHERE state.state_name='iowa'; how many people are there in iowa
+SELECT count(city.city_name) FROM city WHERE city.state_name='oregon' AND city.population>150000; how many major cities are there in oregon
+SELECT lake.lake_name FROM lake; name all the lakes of us
+SELECT state.population FROM state WHERE state.state_name='kansas'; how many people live in kansas
+SELECT border_info.border FROM border_info WHERE border_info.state_name IN (SELECT river.traverse FROM river WHERE river.length = (SELECT max(river.length) FROM river)  ); which states border the longest river in the usa
+SELECT highlow.state_name FROM highlow WHERE highlow.highest_elevation=(SELECT max(highlow.highest_elevation) FROM highlow); what state has highest elevation
+SELECT river.river_name FROM river WHERE river.traverse='alaska'; which rivers are in alaska
+SELECT count(city.city_name) FROM city WHERE city.state_name='texas' AND city.population>150000; how many major cities are in texas
+SELECT border_info.border FROM border_info WHERE border_info.state_name='alabama'; which states adjoin alabama
+SELECT city.population FROM city WHERE city.city_name='boulder'; people in boulder
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='mississippi'); what are the highest points of states surrounding mississippi
+SELECT highlow.highest_elevation FROM highlow WHERE highlow.highest_point='guadalupe peak'; how high is guadalupe peak
+SELECT city.state_name FROM city WHERE city.population=(SELECT max(city.population) FROM city); what state has the city with the most population
+SELECT city.state_name FROM city WHERE city.city_name='san diego'; where is san diego
+SELECT river.river_name FROM river WHERE river.traverse='alaska'; which rivers flow through alaska
+SELECT highlow.lowest_point FROM highlow WHERE highlow.state_name='texas'; what is the lowest point in texas
+SELECT state.density FROM state WHERE state.population=(SELECT min(state.population) FROM state); what is the population density of the state with the smallest population
+SELECT border_info.border FROM border_info WHERE border_info.state_name='texas'; what states border texas
+SELECT river.traverse FROM river WHERE river.river_name='mississippi'; what states border the mississippi river ?
+SELECT highlow.highest_elevation FROM highlow WHERE highlow.state_name='south carolina'; what is the highest elevation in south carolina
+SELECT count(distinct border_info.border) FROM border_info WHERE border_info.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi'); how many states border the mississippi river
+SELECT count(river.river_name) FROM river WHERE river.river_name='colorado'; how many rivers are called colorado
+SELECT state.density FROM state WHERE state.state_name='texas'; what is the density of texas
+SELECT border_info.border FROM border_info WHERE border_info.state_name='michigan'; what state borders michigan
+SELECT state.state_name FROM state, highlow WHERE state.capital = highlow.highest_point; what states have a capital that is the highest point in the state ?
+SELECT city.population FROM city WHERE city.city_name='boulder'; how many people in boulder
+SELECT state.area FROM state WHERE state.state_name='texas'; what is the area of texas
+SELECT city.population FROM city WHERE city.city_name=(SELECT state.capital FROM state WHERE state.area=(SELECT min(state.area) FROM state)); what is the population of the capital of the smallest state
+SELECT highlow.state_name FROM highlow WHERE highlow.highest_elevation  > (SELECT highlow.highest_elevation FROM highlow WHERE highlow.state_name = 'texas'); which states have points that are higher than the highest point in texas
+SELECT city.population FROM city WHERE city.city_name=(SELECT state.capital FROM state WHERE state.area=(SELECT max(state.area) FROM state)); what is the population of the capital of the largest state
+SELECT city.city_name FROM city WHERE city.state_name='delaware' AND city.population>150000; what are the major cities in delaware
+SELECT state.state_name FROM state WHERE state.density=(SELECT max(state.density) FROM state); what is the state with the largest population density
+SELECT river.river_name FROM river WHERE river.traverse='ohio'; what is the river that cross over ohio
+SELECT highlow.lowest_point FROM highlow,state WHERE highlow.state_name=state.state_name AND state.state_name IN(SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state)); what is the lowest point of the state with the largest area
+SELECT highlow.state_name FROM highlow WHERE highlow.highest_elevation  > (SELECT highlow.highest_elevation FROM highlow WHERE highlow.state_name = 'colorado'); what states high point are higher than that of colorado ?
+SELECT state.capital FROM state WHERE state.state_name='indiana'; what is the capital of indiana
+SELECT river.traverse FROM river WHERE river.river_name='colorado'; which states do colorado river flow through
+SELECT count(river.river_name) FROM river WHERE river.traverse='idaho'; how many rivers are there in idaho
+(SELECT city.state_name FROM city WHERE city.population = (SELECT min(tmp.population) FROM (SELECT city.population FROM city, state WHERE state.capital = city.city_name) tmp) ); what state has the smallest capital ?
+SELECT city.population FROM city WHERE city.city_name='montgomery'; how many inhabitants does montgomery have
+SELECT state.population FROM state WHERE state.state_name='california'; how many people live in california
+SELECT state.area FROM state WHERE state.state_name='seattle'; what is the area of seattle
+SELECT city.city_name FROM city WHERE city.state_name='kansas' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='kansas'); what is the largest city of kansas
+SELECT b1.border FROM border_info b1, border_info b2 WHERE b1.state_name = b2.border AND b2.state_name IN (SELECT state.state_name FROM state WHERE state.population = (SELECT max(state.population) FROM state)); what states border states that border the state with the largest population ?
+SELECT river.river_name FROM river WHERE river.traverse IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='new mexico'); which rivers run through states bordering new mexico
+SELECT state.capital FROM state WHERE state.state_name IN ( SELECT border_info.border FROM border_info GROUP BY border_info.border having count(1) = (SELECT max(cnt1) FROM (SELECT border_info.border, count(1) AS cnt1 FROM border_info GROUP BY border_info.border) tmp) ); what is the capital of the state that borders the most states
+SELECT state.area FROM state WHERE state.capital='albany'; what is the area of the state with the capital albany
+SELECT city.city_name FROM city WHERE city.state_name='texas' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='texas'); what is the city in texas with the largest population
+SELECT highlow.lowest_point FROM highlow WHERE highlow.lowest_elevation = (SELECT min(highlow.lowest_elevation) FROM highlow); where is the lowest point in the us
+SELECT city.state_name FROM city WHERE city.city_name='rochester'; in which state is rochester
+SELECT state.capital FROM state,border_info WHERE border_info.border=state.state_name AND border_info.state_name='texas'; which capitals are in states that border texas
+SELECT river.river_name FROM river WHERE river.length=(SELECT max(river.length) FROM river); what river is the longest one in the united states ?
+SELECT city.population FROM city WHERE city.city_name='austin' AND city.state_name='texas'; how many people live in austin texas
+SELECT river.traverse FROM river WHERE river.river_name='mississippi'; through which states does the mississippi flow
+SELECT city.population FROM city WHERE city.city_name='riverside'; how many people live in riverside
+SELECT state.capital FROM state WHERE state.state_name='alabama'; what is the capital of the alabama state
+SELECT distinct highlow.highest_point FROM highlow WHERE highlow.highest_elevation = (SELECT max(highlow.highest_elevation) FROM highlow); what is the highest point in the us
+SELECT border_info.border FROM border_info WHERE border_info.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi'); what states border states which the mississippi runs through
+SELECT border_info.border FROM border_info WHERE border_info.state_name='colorado'; which states border colorado
+SELECT max(state.area) FROM state; what is the size of the largest state in the usa
+SELECT state.state_name FROM state WHERE state.area=(SELECT min(state.area) FROM state WHERE state.state_name IN (SELECT border_info.border FROM border_info WHERE border_info.state_name = 'texas') ) AND state.state_name IN ((SELECT border_info.border FROM border_info WHERE border_info.state_name = 'texas')); which state has the smallest area that borders texas ?
+SELECT highlow.state_name FROM highlow WHERE highlow.lowest_elevation=(SELECT min(highlow.lowest_elevation) FROM highlow,river WHERE(river.river_name='mississippi') AND(river.traverse=highlow.state_name)); of the states washed by the mississippi river which has the lowest point
+SELECT state.population FROM state WHERE state.state_name='montana'; what is the population of montana
+SELECT city.city_name FROM city WHERE city.state_name='montana' AND city.population>150000; what is the major cities in montana
+SELECT river.river_name FROM river WHERE river.traverse IN(SELECT border_info.border FROM border_info WHERE border_info.state_name IN(SELECT state.state_name FROM state WHERE state.capital='atlanta')); what rivers run through the states that border the state with the capital atlanta
+SELECT highlow.lowest_elevation FROM highlow WHERE highlow.state_name='pennsylvania'; what is the lowest elevation in pennsylvania
+SELECT city.state_name FROM city WHERE city.city_name='denver'; which state is the city denver located in
+SELECT state.population FROM state WHERE state.state_name='new hampshire'; how many people live in new hampshire
+SELECT count(city.city_name) FROM city WHERE city.state_name='louisiana'; how many cities are in louisiana
+SELECT count(river.river_name) FROM river WHERE river.traverse='texas' AND river.length > all(SELECT river.length FROM river WHERE river.river_name='red'); how many rivers in texas are longer than the red
+SELECT state.density FROM state WHERE state.area=(SELECT min(state.area) FROM state); what is the population density of the smallest state
+SELECT mountain.mountain_name FROM mountain WHERE mountain.mountain_altitude=(SELECT max(mountain.mountain_altitude) FROM mountain); what is the tallest mountain in the united states
+SELECT city.city_name FROM city WHERE city.state_name='wyoming' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='wyoming'); what is the most populous city in wyoming
+SELECT count(border_info.border) FROM border_info WHERE border_info.state_name='kentucky'; what is the number of neighboring states for kentucky
+SELECT state.capital FROM state, city WHERE state.capital = city.city_name AND city.population <= 150000; which capitals are not major cities ?
+SELECT highlow.highest_elevation FROM highlow,state WHERE highlow.state_name=state.state_name AND state.area=(SELECT max(state.area) FROM state); how high is the highest point in the largest state
+SELECT border_info.border FROM border_info WHERE border_info.state_name='delaware'; what states border delaware
+SELECT state.state_name FROM state WHERE state.density=(SELECT max(state.density) FROM state); which state has the largest density
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city); what city has the largest population
+SELECT river.traverse FROM river WHERE river.river_name='mississippi'; which states does the mississippi river run through
+SELECT city.city_name FROM city WHERE city.state_name='missouri' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='missouri'); what is the largest city in missouri
+SELECT sum(state.area) FROM state; how many square kilometers in the us
+SELECT state.population FROM state WHERE state.state_name='new york'; how many people live in new york
+SELECT max(highlow.highest_elevation) FROM highlow; what is the height of the highest point in the usa
+SELECT river.river_name FROM river WHERE river.traverse='maine'; what rivers run through maine
+SELECT mountain.state_name FROM mountain WHERE mountain.mountain_name='whitney'; where is mount whitney located
+SELECT highlow.highest_point,highlow.state_name FROM highlow WHERE highlow.lowest_elevation=0; what is the highest point in each state whose lowest point is sea level
+SELECT city.city_name FROM city; give me the cities in usa
+SELECT city.population FROM city WHERE city.city_name='portland' AND city.state_name='maine'; what is the population of portland maine
+SELECT highlow.highest_point FROM highlow,state WHERE highlow.state_name=state.state_name AND state.state_name IN(SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state)); what is the highest point of the state with the largest area
+SELECT state.country_name FROM state WHERE state.state_name='new hampshire'; where is new hampshire
+SELECT state.country_name FROM state WHERE state.state_name='massachusetts'; where is massachusetts
+SELECT border_info.border FROM border_info WHERE border_info.state_name='iowa'; states bordering iowa
+SELECT border_info.border FROM border_info WHERE border_info.state_name='alabama'; which states border alabama
+SELECT city.population FROM city WHERE city.city_name='spokane' AND city.state_name='washington'; how many people live in spokane washington
+SELECT highlow.highest_elevation FROM highlow WHERE highlow.state_name='louisiana'; how high is the highest point of louisiana
+SELECT river.river_name FROM river WHERE river.length=(SELECT max(river.length) FROM river); what is the longest river in the us
+SELECT state.capital FROM state,highlow WHERE state.state_name=highlow.state_name AND highlow.highest_elevation=(SELECT max(highlow.highest_elevation) FROM highlow); what is the capital of the state with the highest elevation
+SELECT river.river_name FROM river WHERE river.traverse='texas'; what river flows through texas
+SELECT state.area FROM state WHERE state.area=(SELECT max(state.area) FROM state); what is the area of the largest state
+SELECT border_info.border FROM border_info WHERE border_info.state_name='kentucky'; which state border kentucky
+SELECT river.river_name FROM river WHERE river.traverse='texas' AND river.length=(SELECT max(river.length) FROM river WHERE river.traverse='texas'); what is the longest river in texas
+SELECT city.state_name FROM city GROUP BY city.state_name ORDER BY sum(city.population) DESC LIMIT 1; what state has the largest urban population ?
+SELECT state.population FROM state WHERE state.state_name='alabama'; how many citizens in alabama
+SELECT state.state_name FROM state WHERE state.population=(SELECT max(state.population) FROM state); what state has the largest population
+SELECT city.population FROM city WHERE city.city_name='atlanta'; what is the population of atlanta
+SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state); what is the largest state in the us
+SELECT count(city.city_name) FROM city; how many cities are there in usa
+SELECT river.traverse FROM river WHERE river.river_name='mississippi'; through which states does the mississippi run
+SELECT state.state_name FROM state left outer join border_info ON state.state_name = border_info.state_name GROUP BY state.state_name having count(border_info.border) = (SELECT min(cnt) FROM (SELECT state.state_name, count(border_info.border) AS cnt FROM state left outer join border_info ON state.state_name = border_info.state_name GROUP BY state.state_name) tmp); what state borders the least states
+SELECT border_info.border FROM border_info WHERE border_info.state_name='california'; what is the adjacent state of california
+SELECT state.area FROM state WHERE state.state_name='california'; what is the area of california
+SELECT river.river_name FROM river; what are the major rivers in the us
+SELECT highlow.state_name FROM highlow WHERE highlow.highest_elevation=(SELECT max(highlow.highest_elevation) FROM highlow); what is the state wih the highest elevation in the united states
+SELECT river.traverse FROM river; what states have rivers running through them ?
+SELECT state.capital FROM state WHERE state.state_name='michigan'; what is the capital of michigan
+SELECT border_info.border FROM border_info WHERE border_info.state_name='hawaii'; which states border hawaii
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='new mexico'; what is the highest point in new mexico
+SELECT river.river_name FROM river,border_info WHERE river.traverse=border_info.state_name AND border_info.border='tennessee' ORDER BY river.length DESC LIMIT 1; what is the longest river that runs through a state that borders tennessee
+SELECT count(city.city_name) FROM city WHERE city.city_name='austin'; how many cities named austin are there in the usa
+SELECT highlow.lowest_point FROM highlow WHERE highlow.state_name='colorado'; what is the lowest point of colorado
+SELECT city.population FROM city WHERE city.city_name='austin'; how many people live in austin
+SELECT city.city_name FROM city WHERE city.state_name='alaska' AND city.population=(SELECT min(city.population) FROM city WHERE city.state_name='alaska'); what is the smallest city in alaska
+SELECT state.population FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi'); what are the populations of states through which the mississippi run
+SELECT border_info.border FROM border_info WHERE border_info.state_name='wisconsin'; what states border wisconsin
+SELECT border_info.border FROM border_info WHERE border_info.state_name='arizona'; which states border arizona
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city,state WHERE city.city_name=state.capital); what capital has the largest population
+SELECT state.population FROM state WHERE state.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='wyoming') AND state.population=(SELECT max(state.population) FROM state WHERE state.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='wyoming' )); how many people live in the smallest state bordering wyoming
+SELECT river.length FROM river WHERE river.river_name='colorado' AND river.traverse='texas'; what is the length of the colorado river in texas
+SELECT river.river_name FROM river WHERE river.traverse='virginia'; what river runs through virginia
+SELECT state.population FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='mississippi'); what are the populations of the states through which the mississippi river runs
+SELECT count(city.state_name) FROM city WHERE city.city_name='springfield'; how many states have cities or towns named springfield
+SELECT border_info.border FROM border_info WHERE border_info.state_name='kentucky'; what states border kentucky
+SELECT state.state_name FROM border_info,state WHERE state.state_name=border_info.border AND border_info.state_name='california' AND state.area=(SELECT max(state.area) FROM border_info,state WHERE state.state_name=border_info.border AND border_info.state_name='california'); what is the largest state that borders california
+SELECT state.state_name FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='rio grande') AND state.area=(SELECT max(state.area) FROM state WHERE state.state_name IN(SELECT river.traverse FROM river WHERE river.river_name='rio grande')); what is the largest of the state that the rio grande runs through
+SELECT state.density FROM state WHERE state.capital='austin'; what is the population density in the state with capital austin
+SELECT state.capital FROM state WHERE state.state_name='hawaii'; what is the capital of hawaii
+SELECT state.population FROM state WHERE state.state_name='arizona'; what is the population of arizona
+SELECT highlow.state_name FROM highlow WHERE highlow.highest_elevation=(SELECT max(highlow.highest_elevation) FROM highlow); what is the state that contains the highest point
+SELECT count(city.city_name) FROM city WHERE city.state_name='texas'; how many cities does texas have
+SELECT state.capital FROM state WHERE state.area=(SELECT max(state.area) FROM state); what is the capital city of the largest state in the us
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city,state WHERE city.city_name=state.capital); what is largest capital
+SELECT river.length FROM river WHERE river.length=(SELECT min(river.length) FROM river); how long is the shortest river in the usa
+SELECT city.population FROM city WHERE city.city_name=(SELECT state.capital FROM state WHERE state.state_name = 'texas'); what is the size of the capital of texas
+SELECT city.population FROM city WHERE city.city_name='austin' AND city.state_name='texas'; what is the population of austin texas
+SELECT river.river_name FROM river WHERE river.traverse IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='alabama'); what rivers flow through states that alabama borders
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city); what is the biggest city in the us
+SELECT state.state_name FROM state WHERE state.density=(SELECT min(state.density) FROM state); which state has the least population density
+SELECT highlow.lowest_elevation FROM highlow WHERE highlow.lowest_point='death valley'; what is the elevation of death valley
+SELECT city.city_name FROM city WHERE city.state_name='rhode island' AND city.population>150000; what are the major cities in rhode island
+SELECT avg(state.population) FROM state; what is the average population of the us by state
+SELECT city.city_name FROM city WHERE city.state_name='missouri' AND city.population>150000; what are the major cities in missouri
+SELECT state.area FROM state WHERE state.density=(SELECT min(state.density) FROM state); what is the area of the state with the smallest population density
+SELECT state.capital FROM state WHERE state.state_name='new hampshire'; what is the capital of new hampshire
+SELECT highlow.state_name FROM highlow WHERE highlow.highest_elevation>(SELECT highlow.highest_elevation FROM highlow WHERE highlow.state_name='colorado'); which states have points higher than the highest point in colorado
+SELECT highlow.state_name FROM highlow WHERE highlow.highest_elevation=(SELECT max(highlow.highest_elevation) FROM highlow); what state contains the highest point in the us
+SELECT state.area FROM state WHERE state.state_name='north dakota'; how big is north dakota
+SELECT river.river_name FROM river WHERE river.traverse IN(SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state)); what rivers flow through the largest state
+SELECT river.traverse FROM river GROUP BY river.traverse ORDER BY count(1) DESC LIMIT 1; what state has the most rivers running through it ?
+SELECT distinct river.length FROM river WHERE river.river_name = ( SELECT river_name FROM (SELECT river.river_name, count(1) AS cnt FROM river GROUP BY river.river_name ) tmp1 WHERE tmp1.cnt = (SELECT max (cnt) FROM (SELECT river.river_name, count(1) AS cnt FROM river GROUP BY river.river_name ) tmp2 ) ); what is the length of the river that runs through the most number of states
+SELECT state.area FROM state WHERE state.state_name='massachusetts'; how big is massachusetts
+SELECT b1.border FROM border_info b1, border_info b2, border_info b3, border_info b4 WHERE b1.state_name = b2.border AND b2.state_name = b3.border AND b3.state_name = b4.border AND b4.state_name = 'texas'; what states border states that border states that border states that border texas
+SELECT count(border_info.border) FROM border_info WHERE border_info.state_name=(SELECT state.state_name FROM state WHERE state.capital='boston'); how many states border on the state whose capital is boston
+SELECT river.river_name FROM river WHERE river.length=(SELECT max(river.length) FROM river); what is the longest river
+SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state); what is the largest state
+SELECT state.capital FROM state WHERE state.state_name='texas'; can you tell me the capital of texas
+SELECT city.city_name FROM city WHERE city.population>150000 AND city.state_name IN (SELECT river.traverse FROM river WHERE river.river_name IN (SELECT river.river_name FROM river WHERE river.traverse='virginia' AND river.length>750) ); what are the major cities in the states through which the major river in virginia runs
+SELECT state.population FROM state WHERE state.state_name='south dakota'; what is the population of south dakota
+SELECT state.area FROM state WHERE state.state_name='new mexico'; what is the area of new mexico
+SELECT state.state_name FROM state WHERE state.state_name NOT IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='texas'); which states does not border texas
+SELECT count(city.city_name) FROM city WHERE city.state_name IN(SELECT border_info.border FROM border_info WHERE border_info.state_name='nebraska') AND city.population>150000; how many major cities are in states bordering nebraska
+SELECT state.state_name FROM state WHERE state.capital='salem'; what state has the capital salem
+SELECT count(border_info.border) FROM border_info WHERE border_info.state_name=(SELECT state.state_name FROM state WHERE state.area=(SELECT max(state.area) FROM state)); how many states border the largest state
+SELECT city.city_name FROM city WHERE city.population=(SELECT max(city.population) FROM city); what is the biggest city in usa
+SELECT city.city_name FROM city WHERE city.state_name='california'; what cities in california
+SELECT river.river_name FROM river WHERE river.traverse='oregon'; what rivers are in oregon
+SELECT state.population FROM state WHERE state.state_name='minnesota'; what is the population of minnesota
+SELECT sum(state.area) FROM state; what is the total area of the usa
+SELECT state.density FROM state WHERE state.state_name='wyoming'; what is the population density of wyoming
+SELECT city.city_name FROM city WHERE city.state_name='arkansas' AND city.population=(SELECT min(city.population) FROM city WHERE city.state_name='arkansas'); what is the smallest city in arkansas
+SELECT state.population FROM state WHERE state.state_name='texas'; what is the population of texas
+SELECT state.population FROM state WHERE state.state_name='utah'; how many people stay in utah
+SELECT river.river_name FROM river WHERE river.length=(SELECT max(river.length) FROM river); what is the longest river in the united states
+SELECT river.river_name FROM river WHERE river.traverse='illinois'; what river runs through illinois
+SELECT state.population FROM state WHERE state.state_name='texas'; how many people live in texas
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='kansas'; what is the highest point in kansas
+SELECT city.population FROM city WHERE city.city_name='dallas'; what is the population of dallas
+SELECT city.city_name FROM city WHERE city.state_name='texas'; give me the cities which are in texas
+SELECT city.state_name FROM city WHERE city.state_name='montana' AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name='montana'); which state is the largest city in montana in ?
+SELECT city.city_name FROM city WHERE city.state_name IN(SELECT border_info.state_name FROM border_info WHERE border_info.border='california') AND city.population=(SELECT max(city.population) FROM city WHERE city.state_name IN(SELECT border_info.state_name FROM border_info WHERE border_info.border='california')); what is the largest city in states that border california
+SELECT highlow.lowest_point FROM highlow WHERE highlow.state_name='iowa'; where is the lowest spot in iowa
+SELECT river.traverse FROM river WHERE river.river_name='ohio'; what states does the ohio river go through
+SELECT highlow.lowest_point FROM highlow WHERE highlow.lowest_elevation = (SELECT min(highlow.lowest_elevation) FROM highlow); what is the lowest point of the us
+SELECT river.river_name FROM river WHERE river.traverse IN ( SELECT highlow.state_name FROM highlow WHERE highlow.lowest_elevation=(SELECT min(highlow.lowest_elevation) FROM highlow)); what rivers run through the state with the lowest point in the usa ?
+SELECT lake.lake_name FROM lake WHERE lake.state_name='michigan'; name the major lakes in michigan
+SELECT city.population FROM city WHERE city.city_name='atlanta'; what is the population of atlanta ga
+SELECT state.state_name FROM state WHERE state.population=(SELECT min(state.population) FROM state); what is the state with the lowest population
+SELECT state.state_name FROM state WHERE state.density=(SELECT min(state.density) FROM state); what state has the smallest population density
+SELECT city.population FROM city WHERE city.city_name='seattle' AND city.state_name='washington'; what is the population of seattle washington
+SELECT state.state_name FROM state WHERE state.state_name NOT IN (SELECT border_info.state_name FROM border_info); what states have no bordering state ?
+SELECT state.population FROM state WHERE state.state_name='district of columbia'; how many people live in washington dc
+SELECT city.city_name FROM city WHERE city.state_name='kansas' AND city.population>150000; what are the major cities in kansas
+SELECT state.population FROM state WHERE state.state_name='california'; how many citizens live in california
+SELECT river.river_name FROM river,highlow WHERE river.traverse=highlow.state_name AND highlow.highest_elevation=(SELECT max(highlow.highest_elevation) FROM highlow) ORDER BY river.length DESC LIMIT 1; what is the longest river in the state with the highest point
+SELECT city.city_name FROM city WHERE city.population=(SELECT min(city.population) FROM city); what is the city with the smallest population
+SELECT highlow.highest_point FROM highlow WHERE highlow.state_name='texas'; what is the highest point in texas
+SELECT city.population FROM city WHERE city.city_name='boulder'; number of citizens in boulder
+SELECT city.population FROM city WHERE city.city_name='boulder'; how many citizens in boulder
+SELECT state.population FROM state WHERE state.state_name='washington'; how many people live in washington
+SELECT highlow.highest_elevation FROM highlow WHERE highlow.state_name='delaware'; how high is the highest point of delaware

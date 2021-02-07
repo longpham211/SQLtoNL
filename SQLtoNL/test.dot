@@ -1,0 +1,21 @@
+strict digraph "" {
+	node [label="\N"];
+	"0river"	 [label=river,
+		nested=0,
+		type=0];
+	"0river.test8778511770560"	 [label=test,
+		nested=0,
+		type=1];
+	"0river" -> "0river.test8778511770560"	 [label=σ,
+		type=σ];
+	"0river.river_name"	 [label=river_name,
+		nested=0,
+		type=1];
+	"0river.river_name" -> "0river"	 [label=of,
+		type=µ];
+	"0'TEST'-9223363258343026058"	 [label="'TEST'",
+		nested=0,
+		type=2];
+	"0river.test8778511770560" -> "0'TEST'-9223363258343026058"	 [label="=",
+		type=θ];
+}
